@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"io/ioutil"
 	"github.com/labstack/echo"
 	_ "github.com/go-sql-driver/mysql"
 	"database/sql"
@@ -42,6 +43,14 @@ func main() {
 		log.Print("add ", cr)
 		c.AddFunc(cr.Spec, func() {
 			log.Print("executed ", cr.Hook)
+			resp, err := http.Get(cr.Hook)
+			if err != nil {
+				log.Print(err)
+				return
+			}
+			defer resp.Body.Close()
+			// byteArray, _ := ioutil.ReadAll(resp.Body)
+			// log.Print(string(byteArray))
 		})
 	}
 
