@@ -1,0 +1,8 @@
+package: github.com/nakaji-dayo/simple-web
+import:
+- package: github.com/labstack/echo
+  version: ^3.2.1
+- package: github.com/go-sql-driver/mysql
+  version: ^1.3.0
+- package: github.com/robfig/cron
+  version: ^1.0.0
